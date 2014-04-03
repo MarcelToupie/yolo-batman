@@ -23,9 +23,17 @@ template<typename K, typename V>
 int Hashage<K,V>::hash(K cle) {
     if (typeid(cle) == typeid(int) ) {
         return (cle%TAILLE);
-    } else if (typeid(cle) == typeid(float) ) {
+    } 
+    else if (typeid(cle) == typeid(float) ) {
         return ( (int)(cle%TAILLE) );
     }
+    else if (typeid(cle) == typeid(string)){
+			char[] m = (char[])cle;
+			for(int){
+				
+			}
+	}
+    
 }
 //ajoute le couple (clf,valr) ou change la valeur associée à clf s'il y en avait une
 template <typename K,typename V>
