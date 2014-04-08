@@ -25,7 +25,9 @@ class Hashage{
 	public :
 		Hashage();
 		~Hashage();
-		int hash(K clf);
+		int hash(float clf);
+		int hash(int clf);
+		int hash(string clf);
 		void associer(K clf,V valr); //ajoute le couple (clf,valr) ou change la valeur associée à clf s'il y en avait une
 		bool estVide(); //VRAI ssi aucun couple n'est stocké
 		V valeurAssociee(K clf); //donne la valeur associée à la clef clf

@@ -6,6 +6,7 @@
 
 #include "Hashage.hpp"
 #include <typeinfo>
+#include <fstream>
 //---------------------------------------
 
 //Constructeur
@@ -18,23 +19,26 @@ template<typename K, typename V>
 Hashage<K,V>::~Hashage() {}
 
 
-//Fonction de hachage
+//Fonctions de hachage
 template<typename K, typename V>
-int Hashage<K,V>::hash(K cle) {
-    if (typeid(cle) == typeid(int) ) {
-        return (cle%TAILLE);
-    } 
-    else if (typeid(cle) == typeid(float) ) {
-        return ( (int)(cle%TAILLE) );
-    }
-    else if (typeid(cle) == typeid(string)){
-			char[] m = (char[])cle;
-			for(int){
-				
-			}
+	int Hashage<K,V>::hash(float cle) {
+		return ( (int)((int)cle%(TAILLE-1)) );
 	}
-    
-}
+template<typename K, typename V>
+	int Hashage<K,V>::hash(int cle) {
+		return (int)(cle%(TAILLE-1));
+	}
+template<typename K, typename V>
+	int Hashage<K,V>::hash(string cle) {
+		int sum=0;
+				for(int i = 0 ; i< cle.length(); i++){
+					sum = sum + int(cle[i]);
+				}
+				int modulo = sum%(TAILLE-1);
+				return int(sum%(TAILLE-1));
+	}
+
+   
 //ajoute le couple (clf,valr) ou change la valeur associée à clf s'il y en avait une
 template <typename K,typename V>
 void Hashage<K,V>::associer(K clf,V valr){

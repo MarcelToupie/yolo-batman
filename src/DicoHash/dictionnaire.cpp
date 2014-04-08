@@ -17,9 +17,9 @@ template<typename Valeur>
 template<typename Valeur>
     void Dictionnaire<Valeur>::ajouterMot(string mot, Valeur v){ // ajoute la chaîne mot au Dictionnaire, avec la valeur v, mot étant supposé absent du Dictionnaire
 		Objet obj;
-			obj.occurrence = 1;
-			obj.valeur = v;
-			this->table.associer(mot,obj);//on l'ajoute
+		obj.occurrence = 1;
+		obj.valeur = v;
+		this->table.associer(mot,obj);//on l'ajoute
 		
     }
 

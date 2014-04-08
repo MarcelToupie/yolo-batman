@@ -8,7 +8,7 @@
 template <typename K, typename V>
 AList<K,V>::AList(){
 	this->tete = NULL;
-	this->queue=NULL;
+
 	this->nb=0;
 }
 
@@ -18,27 +18,37 @@ AList<K,V>::~AList(){
 }
 template <typename K, typename V>
 void AList<K,V>::associer(K clf,V valr){
+
 	bool trouve=false;
 	maillon<K,V> * courant = this->tete;
-		while(courant != NULL && trouve==false){
-				if(courant->clf==clf){
-					trouve=true;
-				}
-				else{
-					courant = courant->suivant;
-				}
-		}
-		if(trouve==false){
-			maillon<K,V> * mama;
-			mama->suivant=NULL;
-			mama->clf=clf;
-			mama->elt=valr;
-			this->queue=mama;
-			this->nb++;
-		}
-		else{
-			courant->elt=valr;
-		}
+			while(courant != NULL && courant->suivant!=NULL && trouve==false){
+					if(courant->clf==clf){
+						trouve=true;
+					}
+					else{
+						courant = courant->suivant;
+					}
+			}
+			if(trouve==false && this->nb==0){
+				maillon<K,V> * mama = new maillon<K,V>();
+				mama->suivant=NULL;
+				mama->clf=clf;
+				mama->elt=valr;
+				this->tete=mama;
+				this->nb++;
+			}
+			else if(trouve==false && this->nb>0){
+				maillon<K,V> * mama = new maillon<K,V>();
+				mama->suivant=NULL;
+				mama->clf=clf;
+				mama->elt=valr;
+				courant->suivant = mama;
+				this->nb++;
+			}
+			else{
+				courant->elt=valr;
+			}
+		
 }
 
 template <typename K, typename V>
