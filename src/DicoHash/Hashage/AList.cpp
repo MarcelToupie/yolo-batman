@@ -18,18 +18,22 @@ AList<K,V>::~AList(){
 }
 template <typename K, typename V>
 void AList<K,V>::associer(K clf,V valr){
-
+	cout<<"Assoc AListe"<<endl;
 	bool trouve=false;
 	maillon<K,V> * courant = this->tete;
 			while(courant != NULL && courant->suivant!=NULL && trouve==false){
+				cout<<"boucle : "<<courant->clf<<endl;
+				cout<<"YAHOOU MONTAGNE RUSSE EN BOUCLE"<<endl;
 					if(courant->clf==clf){
 						trouve=true;
+						cout<<"trouve!"<<endl;
 					}
 					else{
 						courant = courant->suivant;
 					}
 			}
 			if(trouve==false && this->nb==0){
+				cout<<"1"<<endl;
 				maillon<K,V> * mama = new maillon<K,V>();
 				mama->suivant=NULL;
 				mama->clf=clf;
@@ -38,6 +42,7 @@ void AList<K,V>::associer(K clf,V valr){
 				this->nb++;
 			}
 			else if(trouve==false && this->nb>0){
+				cout<<"2"<<endl;
 				maillon<K,V> * mama = new maillon<K,V>();
 				mama->suivant=NULL;
 				mama->clf=clf;
@@ -46,6 +51,7 @@ void AList<K,V>::associer(K clf,V valr){
 				this->nb++;
 			}
 			else{
+				cout<<"3"<<endl;
 				courant->elt=valr;
 			}
 		
@@ -72,9 +78,12 @@ V AList<K,V>::valeurAssociee(K clf){
 		if(trouve==true){
 				return courant->elt;
 			}
-		else
-			return NULL;
+		else{
+			V obj;
+			return obj;
+		}
 	}
+
 }
 template <typename K, typename V>
 void AList<K,V>::dissocier(K clf){

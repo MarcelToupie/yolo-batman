@@ -6,6 +6,8 @@
    Antoine Boutruche & Sébastien Vallée
 
 */
+		
+		
 template<typename Valeur>
 	Dictionnaire<Valeur>::Dictionnaire(){}
 
@@ -29,14 +31,16 @@ template<typename Valeur>
 		if(this->table.estClef(mot)){//il faut incrémenter si présent
 				
 				obj = this->table.valeurAssociee(mot);
+				cout<<mot<<" : "<<obj.occurrence<<endl;
 				obj.occurrence = obj.occurrence+1;
+				cout<<"cpt : "<<obj.occurrence<<endl;
 				obj.valeur = v;		
 				this->table.associer(mot,obj);
 		}
 		else{
 				obj.occurrence = 1;
 				obj.valeur = v;
-				this->table->associer(mot,obj);//sinon on l'ajoute
+				this->table.associer(mot,obj);//sinon on l'ajoute
 		}
     }
 
@@ -48,6 +52,6 @@ template<typename Valeur>
     }
 
 template<typename Valeur>
-    Valeur Dictionnaire<Valeur>::valeurAssociee(string mot){ // donne la valeur correspondant à la chaîne mot // (supposée figurer dans le Dictionnaire)
-		return(this->table->valeurAssociee(mot).valeur);
+    Objet Dictionnaire<Valeur>::valeurAssociee(string mot){ // donne la valeur correspondant à la chaîne mot // (supposée figurer dans le Dictionnaire)
+		return(this->table.valeurAssociee(mot));
     }
