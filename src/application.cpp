@@ -1,5 +1,8 @@
 #include <iostream>
+#include <fstream>
 #include <string>
+#include <stdio.h>
+#include <dirent.h>
 using namespace std;
 
 #include "DicoHash/dictionnaire.hpp"
@@ -7,43 +10,59 @@ using namespace std;
 
 
 int main(){
-	cout<<"creation dico"<<endl;
-	Dictionnaire<string> dico;
-		cout<<"ajout bonjour"<<endl;
-		dico.ajouterMot("bonjour", "nom");
-		cout<<"ajout bonsoir"<<endl;
-		dico.ajouterMot("bonsoir", "nom");
-		cout<<"ajout bonsoir"<<endl;
-		dico.ajouterMot("bonsoir", "nom");
-		cout<<"ajout manifestation"<<endl;
-		dico.ajouterMot("manifestation", "nom");
+	
+	cout<<"Bievenue utilisateur"<<endl;
+	cout<<"Pour utliser un de vos documents, vous devez prealablement le placer dans le repertoire res/Documents du projet yolo-batman"<<endl;
+	
+	cout<<"voici la liste des documents presents :"<<endl;
+		DIR * rep = opendir("../res/Documents");
 		
-		cout<<dico.valeurAssociee("bonsoir").occurrence<<endl;
-		cout<<dico.valeurAssociee("bonjour").occurrence<<endl;
-		
-		cout<<endl<<endl<<endl;
-		
-		cout<<"ajout bonjour"<<endl;
-		dico.associerMot("bonjour", "nom");
-		dico.associerMot("bonjour", "nom");
-		dico.associerMot("bonjour", "nom");
-		cout<<"ajout bonsoir"<<endl;
-		dico.associerMot("bonsoir", "nom");
-		cout<<"ajout bonsoir"<<endl;
-		dico.associerMot("bonsoir", "nom");
-		cout<<"ajout manifestation"<<endl;
-		dico.associerMot("manifestation", "nom");
-		
-		
-		
-		
+		if (rep == NULL)
+			cout<<"erreur, le dossier Documents n existe plus, impossible de faire des traitements"<<endl;
+		else{
+			struct dirent * ent;
+			 
+			while ((ent = readdir(rep)) != NULL)
+			{
+				printf("%s\n", ent->d_name);
+			}
+			 
+			closedir(rep);
+		}
+	
+	string nomFichier;
+	cout<<"veuillez entrer le nom du fichier que vous voulez utiliser : "<<endl;
+	cin>>nomFichier;
+	
+	
+			
+	
+    Dictionnaire<string> dico;
+	
+	
+	string cheminFichier = "../res/Documents/";
+	cheminFichier = cheminFichier + nomFichier;
+	ifstream fichier(cheminFichier.c_str());
 
+   if(fichier)
+   {
+      //L'ouverture s'est bien passée, on peut donc lire
 
-		
-		cout<<dico.valeurAssociee("bonsoir").occurrence<<endl;
-		cout<<dico.valeurAssociee("bonjour").occurrence<<endl;
-		cout<<dico.valeurAssociee("manifestation").occurrence<<endl;
-		
-		cout<<"fin"<<endl;
+      string mot; //Une variable pour stocker les mots lues
+
+      while(fichier >> mot) //Tant qu'on n'est pas à la fin, on lit
+      {
+		cout<<mot<<endl;
+         dico.ajouterMot(mot, "rien");
+         //Gestion fermeture automatique du fichier
+      }
+   }
+   else
+   {
+      cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << endl;
+   }
+   cout<<"finish him"<<endl;
+
+   return 0;
 	}
 

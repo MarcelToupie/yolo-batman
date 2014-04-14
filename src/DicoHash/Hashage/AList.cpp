@@ -18,42 +18,42 @@ AList<K,V>::~AList(){
 }
 template <typename K, typename V>
 void AList<K,V>::associer(K clf,V valr){
-	cout<<"Assoc AListe"<<endl;
 	bool trouve=false;
-	maillon<K,V> * courant = this->tete;
-			while(courant != NULL && courant->suivant!=NULL && trouve==false){
-				cout<<"boucle : "<<courant->clf<<endl;
-				cout<<"YAHOOU MONTAGNE RUSSE EN BOUCLE"<<endl;
+	
+	if(this->nb>0){
+			maillon<K,V> * courant = this->tete;
+			maillon<K,V> * precedent = this->tete;
+			while(courant != NULL && trouve==false){
 					if(courant->clf==clf){
 						trouve=true;
-						cout<<"trouve!"<<endl;
 					}
 					else{
+						precedent = courant;
 						courant = courant->suivant;
 					}
 			}
-			if(trouve==false && this->nb==0){
-				cout<<"1"<<endl;
-				maillon<K,V> * mama = new maillon<K,V>();
-				mama->suivant=NULL;
-				mama->clf=clf;
-				mama->elt=valr;
-				this->tete=mama;
-				this->nb++;
-			}
-			else if(trouve==false && this->nb>0){
-				cout<<"2"<<endl;
-				maillon<K,V> * mama = new maillon<K,V>();
-				mama->suivant=NULL;
-				mama->clf=clf;
-				mama->elt=valr;
-				courant->suivant = mama;
-				this->nb++;
-			}
+			
+			if(trouve == true)
+				courant->elt = valr;
 			else{
-				cout<<"3"<<endl;
-				courant->elt=valr;
+					maillon<K,V> * mama = new maillon<K,V>();
+					mama->suivant = NULL;
+					mama->clf = clf;
+					mama->elt = valr;
+					precedent->suivant = mama;
+					this->nb = this->nb + 1;
 			}
+			
+	}
+	else{
+		maillon<K,V> * mama = new maillon<K,V>();
+		mama->suivant = NULL;
+		mama->clf = clf;
+		mama->elt = valr;
+		this->tete = mama;
+		this->nb = this->nb + 1;
+	}
+	
 		
 }
 

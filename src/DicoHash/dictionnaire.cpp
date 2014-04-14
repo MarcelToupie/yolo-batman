@@ -29,15 +29,14 @@ template<typename Valeur>
     void Dictionnaire<Valeur>::associerMot(string mot, Valeur v){ // associe la valeur v à la chaîne mot dans le Dictionnaire, mot pouvant être présent ou absent du Dictionnaire
 		Objet obj;
 		if(this->table.estClef(mot)){//il faut incrémenter si présent
-				
+				cout<<mot<<" est bien une clef"<<endl;
 				obj = this->table.valeurAssociee(mot);
-				cout<<mot<<" : "<<obj.occurrence<<endl;
 				obj.occurrence = obj.occurrence+1;
-				cout<<"cpt : "<<obj.occurrence<<endl;
 				obj.valeur = v;		
 				this->table.associer(mot,obj);
 		}
 		else{
+				cout<<mot<<" INCONNU AU BATAILLON"<<endl;
 				obj.occurrence = 1;
 				obj.valeur = v;
 				this->table.associer(mot,obj);//sinon on l'ajoute
