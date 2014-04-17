@@ -1,8 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <string.h>
 #include <stdio.h>
 #include <dirent.h>
+#include <sstream>
 using namespace std;
 
 #include "DicoHash/dictionnaire.hpp"
@@ -49,12 +50,19 @@ int main(){
       //L'ouverture s'est bien passée, on peut donc lire
 
       string mot; //Une variable pour stocker les mots lues
-
+      char * motBis;
+	  cout<<"begin him"<<endl;
       while(fichier >> mot) //Tant qu'on n'est pas à la fin, on lit
       {
-		cout<<mot<<endl;
-         dico.ajouterMot(mot, "rien");
-         //Gestion fermeture automatique du fichier
+
+		char * writable = new char[mot.size() + 1];
+		copy(mot.begin(), mot.end(), writable);
+		writable[mot.size()] = '\0';
+		writable = strtok(writable,",:;!.\"+/-*1234567890?&");
+		
+		if(writable != NULL)
+			dico.ajouterMot(mot, "rien");
+        //Gestion probleme fermeture automatique du fichier//
       }
    }
    else
