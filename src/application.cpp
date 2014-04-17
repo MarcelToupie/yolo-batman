@@ -61,7 +61,8 @@ int main(){
 		writable = strtok(writable,",:;!.\"+/-*1234567890?&");
 		
 		if(writable != NULL)
-			dico.ajouterMot(mot, "rien");
+			cout<<writable<<endl;
+			//dico.ajouterMot(mot, "rien");
         //Gestion probleme fermeture automatique du fichier//
       }
    }
