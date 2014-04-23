@@ -8,7 +8,7 @@
 
 #ifndef DICTIONNAIRE_HPP
 #define DICTIONNAIRE_HPP
-
+#include <vector>
 #include "Hashage/Hashage.hpp"
 using namespace std;
 
@@ -32,7 +32,8 @@ class Dictionnaire{
         void associerMot(string mot, Valeur v); // associe la valeur v à la chaîne mot dans le dictionnaire, // mot pouvant être présent ou absent du dictionnaire
         void supprimerMot(string mot); // supprime l eventuelle chaîne mot du dictionnaire
         Objet valeurAssociee(string mot); // donne la valeur correspondant a la chaîne mot // (supposée figurer dans le dictionnaire)
-
+        void motsLesPlusFrequents(int nombre);// renvoi une AList avec les N nombre les plus frequents
+		
 
 
 

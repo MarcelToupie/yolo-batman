@@ -33,10 +33,12 @@ template<typename K, typename V>
 		int sum=0;
 				for(int i = 0 ; i< cle.length(); i++){
 					sum = sum + int(cle[i]);
+					cout<<sum<<endl;
 				}
 				int modulo = sum%(TAILLE-1);
-				return int(sum%(TAILLE-1));
+				return (int)abs(sum%(TAILLE-1));
 	}
+
 
    
 //ajoute le couple (clf,valr) ou change la valeur associée à clf s'il y en avait une
@@ -74,21 +76,26 @@ bool Hashage<K,V>::estClef(K cle){
 }
 
 template <typename K,typename V>
-void Hashage<K,V>::trousseau(K* clfs, int N ){
+void Hashage<K,V>::trousseau(vector<K> * clfs, int &N ){
     K* temp;
     int i,j,taille;
-    int cur = 0; //indice du prochain ajout
     if(! this->estVide() ) {
+		cout<<"ca passe"<<endl;
         for(i = 0; i < TAILLE; i++) { //on parcours toutes les AList de la table de hashage
+			cout<<"boubou"<<endl;
             temp = new K[100]; //on crée un tableau temporaire stockant les clés de la AList courante
-            this->tab[i].trousseau(temp,taille); //on applique trousseau(...) sur la AList courante
+            this->list[i].trousseau(temp,taille); //on applique trousseau(...) sur la AList courante
             N += taille; //on met à jour la taille de N
+            cout<<"TAILLE :" <<taille<<endl;
+            cout<<"N :" <<N<<endl;
 
             for(j = 0; j < taille; j++) { //on parcours le liste des clefs dans le tableau temporaire
-                clfs[cur] = temp[j]; //on l'ajoute au tableau de réponse
-                cur++; //on met à jour l'indice d'ajout dans le tableau de réponse
+				cout<<"WTF"<<endl;
+                clfs->push_back("lol"); //on l'ajoute au tableau de réponse
+                cout<<"WHYYYY"<<endl;
             }
             delete[] temp;
         }
     }
+    cout<<N<<endl;
 }

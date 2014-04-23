@@ -48,15 +48,7 @@ int main(){
 
 
 
-
-
-
-
-		cout<<"bonsoir :"<<dico.valeurAssociee("bonsoir").occurrence<<endl;
-		cout<<"bonjour :"<<dico.valeurAssociee("bonjour").occurrence<<endl;
-		cout<<"manifestation :"<<dico.valeurAssociee("manifestation").occurrence<<endl;
-		cout<<"crotte :"<<dico.valeurAssociee("crotte").occurrence<<endl;
-
+		dico.motsLesPlusFrequents(2);
 		cout<<"fin"<<endl;
 
 		return 0;

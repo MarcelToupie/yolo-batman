@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <sstream>
+//#include <regex>
 using namespace std;
 
 #include "DicoHash/dictionnaire.hpp"
@@ -50,21 +51,36 @@ int main(){
       //L'ouverture s'est bien passée, on peut donc lire
 
       string mot; //Une variable pour stocker les mots lues
-      char * motBis;
+      char * writable;
 	  cout<<"begin him"<<endl;
       while(fichier >> mot) //Tant qu'on n'est pas à la fin, on lit
       {
-
-		char * writable = new char[mot.size() + 1];
-		copy(mot.begin(), mot.end(), writable);
-		writable[mot.size()] = '\0';
-		writable = strtok(writable,",:;!.\"+/-*1234567890?&");
+		if((int)mot[0]==(int)'-'){
+				mot.erase(mot.begin());
+		}
+		if((int)mot[mot.length()-1]==(int)'-'){
+			mot.erase(mot.end());
+		}
+		if((int)mot[1]==(int)'\''){
+				mot.erase(mot.begin(),mot.begin()+2);
+		}
 		
-		if(writable != NULL)
-			dico.ajouterMot(mot, "rien");
+		
+			 writable = new char[mot.size() + 1];
+			copy(mot.begin(), mot.end(), writable);
+			writable[mot.size()] = '\0';
+		if(writable != NULL){
+			writable = strtok(writable,",:;!.\"+/*1234567890?&");
+		}
+
+		if(writable != NULL){
+			cout<<writable<<endl;
+			dico.associerMot(mot, "rien");
         //Gestion probleme fermeture automatique du fichier//
-      }
-   }
+		}
+	}
+	//dico.motsLesPlusFrequents(2);
+}
    else
    {
       cout << "ERREUR: Impossible d'ouvrir le fichier en lecture." << endl;

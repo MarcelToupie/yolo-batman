@@ -29,14 +29,12 @@ template<typename Valeur>
     void Dictionnaire<Valeur>::associerMot(string mot, Valeur v){ // associe la valeur v à la chaîne mot dans le Dictionnaire, mot pouvant être présent ou absent du Dictionnaire
 		Objet obj;
 		if(this->table.estClef(mot)){//il faut incrémenter si présent
-				cout<<mot<<" est bien une clef"<<endl;
 				obj = this->table.valeurAssociee(mot);
 				obj.occurrence = obj.occurrence+1;
 				obj.valeur = v;		
 				this->table.associer(mot,obj);
 		}
 		else{
-				cout<<mot<<" INCONNU AU BATAILLON"<<endl;
 				obj.occurrence = 1;
 				obj.valeur = v;
 				this->table.associer(mot,obj);//sinon on l'ajoute
@@ -54,3 +52,27 @@ template<typename Valeur>
     Objet Dictionnaire<Valeur>::valeurAssociee(string mot){ // donne la valeur correspondant à la chaîne mot // (supposée figurer dans le Dictionnaire)
 		return(this->table.valeurAssociee(mot));
     }
+ 
+template<typename Valeur>   
+    void  Dictionnaire<Valeur>::motsLesPlusFrequents(int nombre){
+		vector<Objet> listeMots;
+		vector<string> clefs();
+		vector<string> * clfs;
+		cout<<clfs->size()<<endl;
+		int N=0;
+		
+		this->table.trousseau(clfs,N);
+		cout<<N<<endl;
+		cout<<"hop hop"<<endl;
+		cout<<clfs->size()<<endl;
+			for(int i = 1;i<clfs->size();++i){
+				cout<<"boucle"<<endl;
+					//Objet obj = this->table.valeurAssociee(clef);
+					
+					cout<<clfs->at(i)<<"||"<<endl;//obj.occurrence<<endl;
+					
+			}
+		
+		
+		
+	}
