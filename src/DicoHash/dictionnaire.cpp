@@ -55,22 +55,53 @@ template<typename Valeur>
  
 template<typename Valeur>   
     void  Dictionnaire<Valeur>::motsLesPlusFrequents(int nombre){
-		vector<Objet> listeMots;
-		vector<string> clefs();
-		vector<string> * clfs;
-		cout<<clfs->size()<<endl;
+		Objet objInit;
+		objInit.occurrence =-1;
+		objInit.valeur = "vide";
+		
+		Objet swap;
+		Objet swap2;
+		vector<Objet> listeMots(nombre,objInit);
+		vector<string> * clfs = new vector<string>();
 		int N=0;
 		
 		this->table.trousseau(clfs,N);
-		cout<<N<<endl;
-		cout<<"hop hop"<<endl;
-		cout<<clfs->size()<<endl;
-			for(int i = 1;i<clfs->size();++i){
-				cout<<"boucle"<<endl;
-					//Objet obj = this->table.valeurAssociee(clef);
+			for(int i = 0;i<clfs->size();i++){
+					objInit.valeur = clfs->at(i);
+					objInit.occurrence = this->table.valeurAssociee(clfs->at(i)).occurrence;
 					
-					cout<<clfs->at(i)<<"||"<<endl;//obj.occurrence<<endl;
-					
+					int j = 0;
+					bool trouve=false;
+					while(j<nombre && trouve==false){
+						if(listeMots[j].occurrence==-1 ){
+							listeMots[j] = objInit;
+							trouve=true;
+							
+						}
+						else if(objInit.occurrence>listeMots[j].occurrence){
+								swap = listeMots[j];
+								int k=j+1;
+								while(k<nombre && listeMots[k].occurrence != -1){
+										swap2=listeMots[k];
+										listeMots[k] = swap;
+										swap = swap2;
+
+										k = k+1;
+								}
+								listeMots[j] = objInit;
+								trouve=true;
+						}
+						
+							j = j+1;
+						
+							
+					}
+			}
+			int i=0;
+			cout<<"les "<<nombre<<" mots les plus fréquents sont:"<<endl;
+			while(i<listeMots.size() && listeMots[i].occurrence != -1){
+					cout<<listeMots[i].valeur<<" : "<<listeMots[i].occurrence<<endl;
+					i = i +1;
 			}
 		
 		

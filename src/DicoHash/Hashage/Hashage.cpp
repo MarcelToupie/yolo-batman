@@ -33,7 +33,6 @@ template<typename K, typename V>
 		int sum=0;
 				for(int i = 0 ; i< cle.length(); i++){
 					sum = sum + int(cle[i]);
-					cout<<sum<<endl;
 				}
 				int modulo = sum%(TAILLE-1);
 				return (int)abs(sum%(TAILLE-1));
@@ -80,22 +79,15 @@ void Hashage<K,V>::trousseau(vector<K> * clfs, int &N ){
     K* temp;
     int i,j,taille;
     if(! this->estVide() ) {
-		cout<<"ca passe"<<endl;
         for(i = 0; i < TAILLE; i++) { //on parcours toutes les AList de la table de hashage
-			cout<<"boubou"<<endl;
             temp = new K[100]; //on crée un tableau temporaire stockant les clés de la AList courante
             this->list[i].trousseau(temp,taille); //on applique trousseau(...) sur la AList courante
             N += taille; //on met à jour la taille de N
-            cout<<"TAILLE :" <<taille<<endl;
-            cout<<"N :" <<N<<endl;
 
             for(j = 0; j < taille; j++) { //on parcours le liste des clefs dans le tableau temporaire
-				cout<<"WTF"<<endl;
-                clfs->push_back("lol"); //on l'ajoute au tableau de réponse
-                cout<<"WHYYYY"<<endl;
+                clfs->push_back(temp[j]); //on l'ajoute au tableau de réponse
             }
             delete[] temp;
         }
     }
-    cout<<N<<endl;
 }

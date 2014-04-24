@@ -135,7 +135,6 @@ bool AList<K,V>::estClef(K cle){
 template <typename K, typename V>
 void AList<K,V>::trousseau(K* clfs, int& N ){
 		if(this->nb!=0){
-			cout<<"AYAAAA"<<endl;
 				maillon<K,V> * courant=this->tete;
 				N=0;
 
@@ -149,8 +148,6 @@ void AList<K,V>::trousseau(K* clfs, int& N ){
 		else{
 				N=0;
 		}
-		
-		cout<<"NALIST :"<<N<<endl;
 }
 
 

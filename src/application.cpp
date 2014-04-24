@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <sstream>
+#include <cmath>
 //#include <regex>
 using namespace std;
 
@@ -79,7 +80,7 @@ int main(){
         //Gestion probleme fermeture automatique du fichier//
 		}
 	}
-	//dico.motsLesPlusFrequents(2);
+	dico.motsLesPlusFrequents(10);
 }
    else
    {
