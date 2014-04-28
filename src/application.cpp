@@ -8,7 +8,8 @@
 //#include <regex>
 using namespace std;
 
-#include "DicoHash/dictionnaire.hpp"
+//#include "DicoHash/dictionnaire.hpp"
+#include "DicoArbre/dictionnaire.hpp"
 
 
 

@@ -9,7 +9,7 @@
 #ifndef DICTIONNAIRE_HPP
 #define DICTIONNAIRE_HPP
 #include <vector>
-#include "Hashage/Hashage.hpp"
+#include "arbre.hpp"
 using namespace std;
 
 struct Objet{
@@ -20,12 +20,16 @@ struct Objet{
 
 template<typename Valeur>
 class Dictionnaire{
-
-    public:
+	
+    private:
 		
-		Arbre<string,Objet> pandora;
+		Arbre<char,Objet> * pandora;
 		
+		void parcoursEnProfondeur(Arbre<char,Objet> * arbre,vector<Objet> * tableau,int nombre,string lettres);
+		void insertion(vector<Objet> * tabElements,vector<Objet> * tabAjout);
+		void insertion(Objet,vector<Objet> * tabAjout);
     
+    public :
 		Dictionnaire();
         bool contientMot(string mot); // vrai ssi la chaîne mot figure dans le dictionnaire
         void ajouterMot(string mot, Valeur v); // ajoute la chaîne mot au dictionnaire, avec la valeur v, // mot étant supposé absent du dictionnaire
@@ -33,7 +37,6 @@ class Dictionnaire{
         void supprimerMot(string mot); // supprime l eventuelle chaîne mot du dictionnaire
         Objet valeurAssociee(string mot); // donne la valeur correspondant a la chaîne mot // (supposée figurer dans le dictionnaire)
         void motsLesPlusFrequents(int nombre);// renvoi une AList avec les N nombre les plus frequents
-		
 
 
 
