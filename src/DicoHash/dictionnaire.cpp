@@ -66,44 +66,48 @@ template<typename Valeur>
 		int N=0;
 		
 		this->table.trousseau(clfs,N);
-			for(int i = 0;i<clfs->size();i++){
-					objInit.valeur = clfs->at(i);
-					objInit.occurrence = this->table.valeurAssociee(clfs->at(i)).occurrence;
-					
-					int j = 0;
-					bool trouve=false;
-					while(j<nombre && trouve==false){
-						if(listeMots[j].occurrence==-1 ){
-							listeMots[j] = objInit;
-							trouve=true;
-							
-						}
-						else if(objInit.occurrence>listeMots[j].occurrence){
-								swap = listeMots[j];
-								int k=j+1;
-								while(k<nombre && listeMots[k].occurrence != -1){
-										swap2=listeMots[k];
-										listeMots[k] = swap;
-										swap = swap2;
+		for(int i = 0;i<clfs->size();i++){
+			objInit.valeur = clfs->at(i);
+			objInit.occurrence = this->table.valeurAssociee(clfs->at(i)).occurrence;
+			insertion(objInit,&listeMots);
+						
+			}
+		int i=0;
+		cout<<"les "<<nombre<<" mots les plus fréquents sont:"<<endl;
+		while(i<listeMots.size() && listeMots[i].occurrence != -1){
+			cout<<listeMots[i].valeur<<" : "<<listeMots[i].occurrence<<endl;
+			i = i +1;
+		}
+}
+	
+template<typename Valeur>
+void Dictionnaire<Valeur>::insertion(Objet objet,vector<Objet> * tabAjout){
+	cout<<"INSERTION objet"<<endl;
+	Objet swap;
+	Objet swap2;
+	
+	int j = 0;
+	bool trouve=false;
+	while(j<tabAjout->size() && trouve==false){
+		if(tabAjout->at(j).occurrence==-1 ){
+				tabAjout->at(j) = objet;
+				trouve=true;
+								
+		}
+		else if(objet.occurrence>tabAjout->at(j).occurrence){
+			swap = tabAjout->at(j);
+			int k=j+1;
+			while(k<tabAjout->size() && tabAjout->at(k).occurrence != -1){
+				swap2=tabAjout->at(k);
+				tabAjout->at(k) = swap;
+				swap = swap2;
 
-										k = k+1;
-								}
-								listeMots[j] = objInit;
-								trouve=true;
-						}
-						
-							j = j+1;
-						
+				k = k+1;
+			}
+			tabAjout->at(j) = objet;
+			trouve=true;
+		}
 							
-					}
-			}
-			int i=0;
-			cout<<"les "<<nombre<<" mots les plus fréquents sont:"<<endl;
-			while(i<listeMots.size() && listeMots[i].occurrence != -1){
-					cout<<listeMots[i].valeur<<" : "<<listeMots[i].occurrence<<endl;
-					i = i +1;
-			}
-		
-		
-		
+			j = j+1;
 	}
+}

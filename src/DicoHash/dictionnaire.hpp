@@ -21,11 +21,12 @@ struct Objet{
 template<typename Valeur>
 class Dictionnaire{
 
-    public:
+    private:
 		
 		Hashage<string,Objet> table;
+		void insertion(Objet,vector<Objet> * tabAjout);
 		
-    
+    public:
 		Dictionnaire();
         bool contientMot(string mot); // vrai ssi la chaîne mot figure dans le dictionnaire
         void ajouterMot(string mot, Valeur v); // ajoute la chaîne mot au dictionnaire, avec la valeur v, // mot étant supposé absent du dictionnaire

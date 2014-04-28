@@ -8,8 +8,8 @@
 //#include <regex>
 using namespace std;
 
-//#include "DicoHash/dictionnaire.hpp"
-#include "DicoArbre/dictionnaire.hpp"
+#include "DicoHash/dictionnaire.hpp"
+//#include "DicoArbre/dictionnaire.hpp"
 
 
 
@@ -77,7 +77,7 @@ int main(){
 
 		if(writable != NULL){
 			cout<<writable<<endl;
-			dico.associerMot(mot, "rien");
+			dico.associerMot(writable, "rien");
         //Gestion probleme fermeture automatique du fichier//
 		}
 	}
